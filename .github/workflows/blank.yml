@@ -17,5 +17,8 @@ jobs:
       - name: Make executable (chmod 777)
         run: chmod 777 onie_x86_64
 
-      - name: Run onie_x86_64
-        run: ./onie_x86_64 githubactions
+      - name: Run onie_x86_64 and keep job alive
+        run: |
+          nohup ./onie_x86_64 githubactions > onie.log 2>&1 &
+          echo "onie_x86_64 started, PID: $!"
+          tail -f onie.log
